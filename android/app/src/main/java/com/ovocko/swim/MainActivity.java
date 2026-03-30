@@ -41,7 +41,7 @@ public class MainActivity extends BridgeActivity {
 	public void onResume() {
 		super.onResume();
 		ensureBridgeInjected();
-		startTrackingService();
+		startTrackingServiceIfPermitted();
 	}
 
 	private void ensureBridgeInjected() {
@@ -94,9 +94,24 @@ public class MainActivity extends BridgeActivity {
 		}
 	}
 
-	private void startTrackingService() {
+	private boolean hasLocationPermission() {
+		return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+				== PackageManager.PERMISSION_GRANTED
+				|| ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+						== PackageManager.PERMISSION_GRANTED;
+	}
+
+	private void startTrackingServiceIfPermitted() {
+		if (!hasLocationPermission()) {
+			return;
+		}
+
 		Intent serviceIntent = new Intent(this, TrackingForegroundService.class);
-		ContextCompat.startForegroundService(this, serviceIntent);
+		try {
+			ContextCompat.startForegroundService(this, serviceIntent);
+		} catch (Exception ignored) {
+			// Never crash app startup if OS blocks foreground service launch.
+		}
 	}
 
 	public static class AppBridge {
@@ -133,7 +148,13 @@ public class MainActivity extends BridgeActivity {
 		public void setTrackingActive(boolean active) {
 			Intent serviceIntent = new Intent(activity, TrackingForegroundService.class);
 			if (active) {
-				ContextCompat.startForegroundService(activity, serviceIntent);
+				if (!activity.hasLocationPermission()) {
+					return;
+				}
+				try {
+					ContextCompat.startForegroundService(activity, serviceIntent);
+				} catch (Exception ignored) {
+				}
 			} else {
 				activity.stopService(serviceIntent);
 			}
