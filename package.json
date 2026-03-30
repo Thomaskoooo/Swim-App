@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "echo \"Remote web app mode: no local web build step required\"",
     "sync": "npx cap sync android",
+    "build:android": "npm run build && npm run sync",
     "open:android": "npx cap open android",
     "copy": "npx cap copy android",
     "doctor": "npx cap doctor"

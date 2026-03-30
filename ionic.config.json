@@ -1,0 +1,7 @@
+{
+  "name": "swim-apk",
+  "type": "custom",
+  "integrations": {
+    "capacitor": {}
+  }
+}
