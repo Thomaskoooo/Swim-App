@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+<<<<<<< HEAD
 const { spawnSync } = require('child_process');
+=======
+>>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
 
 function safeUnlink(filePath) {
   try {
@@ -21,6 +24,7 @@ function safeSymlink(target, linkPath) {
   }
 }
 
+<<<<<<< HEAD
 function commandExists(cmd) {
   const checker = process.platform === 'win32' ? 'where' : 'which';
   const result = spawnSync(checker, [cmd], { stdio: 'ignore' });
@@ -53,16 +57,21 @@ function installGlobalCapacitor() {
   return result.status === 0;
 }
 
+=======
+>>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
 function main() {
   if (process.platform === 'win32') {
     return;
   }
 
+<<<<<<< HEAD
   if (commandExists('cap') || commandExists('capacitor')) {
     console.log('[ensure-cap-bin] cap command already available');
     return;
   }
 
+=======
+>>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
   const root = process.cwd();
   const capBin = path.join(root, 'node_modules', '.bin', 'cap');
   const capacitorBin = path.join(root, 'node_modules', '.bin', 'capacitor');
@@ -72,6 +81,7 @@ function main() {
   }
 
   const targets = ['/usr/local/bin', '/usr/bin'];
+<<<<<<< HEAD
   const npmGlobalBin = getNpmGlobalBin();
   if (npmGlobalBin) {
     targets.unshift(npmGlobalBin);
@@ -84,6 +94,10 @@ function main() {
 
   for (const dir of targets) {
     if (!ensureDir(dir)) {
+=======
+  for (const dir of targets) {
+    if (!fs.existsSync(dir)) {
+>>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
       continue;
     }
 
@@ -94,6 +108,7 @@ function main() {
       safeSymlink(capacitorBin, path.join(dir, 'capacitor'));
     }
   }
+<<<<<<< HEAD
 
   if (commandExists('cap') || commandExists('capacitor')) {
     console.log('[ensure-cap-bin] cap command linked successfully');
@@ -108,6 +123,8 @@ function main() {
   } else {
     console.log('[ensure-cap-bin] WARNING: cap command still unavailable');
   }
+=======
+>>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
 }
 
 main();
