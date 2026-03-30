@@ -4,9 +4,11 @@ import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.webkit.JavascriptInterface;
@@ -45,11 +47,13 @@ public class MainActivity extends BridgeActivity {
 	}
 
 	private void ensureBridgeInjected() {
+		final boolean carModeActive = isCarModeActive();
 		WebView webView = getBridge().getWebView();
 		webView.postDelayed(() -> webView.evaluateJavascript(
 				"(function(){"
 						+ "if(window.__ovockoNativeBridgeInstalled){return;}"
 						+ "window.__ovockoNativeBridgeInstalled=true;"
+						+ "window.SWIM_ANDROID_AUTO=" + (carModeActive ? "true" : "false") + ";"
 						+ "function postToNative(title, body){"
 						+ "try{if(window.AndroidAppBridge&&window.AndroidAppBridge.showNativeNotification){"
 						+ "window.AndroidAppBridge.showNativeNotification(String(title||'Notification'), String(body||''));"
@@ -76,6 +80,14 @@ public class MainActivity extends BridgeActivity {
 						+ "}"
 						+ "})();",
 				null), 1200);
+	}
+
+	private boolean isCarModeActive() {
+		UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
+		if (uiModeManager == null) {
+			return false;
+		}
+		return uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_CAR;
 	}
 
 	private void createWebNotificationChannel() {
