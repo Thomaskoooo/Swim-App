@@ -1,0 +1,10 @@
+{
+  "appId": "com.ovocko.swim",
+  "appName": "Swim Tracker",
+  "webDir": "www",
+  "server": {
+    "url": "https://yap.asociaciairidologov.sk/swim/index.php",
+    "cleartext": false,
+    "androidScheme": "https"
+  }
+}
