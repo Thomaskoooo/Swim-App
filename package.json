@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
     "postinstall": "node -e \"try{require('./scripts/ensure-cap-bin.js')}catch(e){console.log('[postinstall] ensure-cap-bin failed: '+e.message); require('child_process').spawnSync('npm',['install','-g','@capacitor/cli@8.3.0','--quiet'],{stdio:'inherit'});}\"",
-=======
-    "postinstall": "node scripts/ensure-cap-bin.js",
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
     "build": "echo \"Remote web app mode: no local web build step required\"",
     "sync": "npx cap sync android",
     "build:android": "npm run build && npm run sync",

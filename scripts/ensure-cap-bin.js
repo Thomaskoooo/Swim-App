@@ -1,17 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-<<<<<<< HEAD
 const { spawnSync } = require('child_process');
-=======
-<<<<<<< HEAD
-const { spawnSync } = require('child_process');
-=======
-<<<<<<< HEAD
-const { spawnSync } = require('child_process');
-=======
->>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
 
 function safeUnlink(filePath) {
   try {
@@ -32,13 +21,6 @@ function safeSymlink(target, linkPath) {
   }
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
 function commandExists(cmd) {
   const checker = process.platform === 'win32' ? 'where' : 'which';
   const result = spawnSync(checker, [cmd], { stdio: 'ignore' });
@@ -71,39 +53,16 @@ function installGlobalCapacitor() {
   return result.status === 0;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
 function main() {
   if (process.platform === 'win32') {
     return;
   }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
   if (commandExists('cap') || commandExists('capacitor')) {
     console.log('[ensure-cap-bin] cap command already available');
     return;
   }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
   const root = process.cwd();
   const capBin = path.join(root, 'node_modules', '.bin', 'cap');
   const capacitorBin = path.join(root, 'node_modules', '.bin', 'capacitor');
@@ -113,13 +72,6 @@ function main() {
   }
 
   const targets = ['/usr/local/bin', '/usr/bin'];
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
   const npmGlobalBin = getNpmGlobalBin();
   if (npmGlobalBin) {
     targets.unshift(npmGlobalBin);
@@ -132,16 +84,6 @@ function main() {
 
   for (const dir of targets) {
     if (!ensureDir(dir)) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
-  for (const dir of targets) {
-    if (!fs.existsSync(dir)) {
->>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
       continue;
     }
 
@@ -152,13 +94,6 @@ function main() {
       safeSymlink(capacitorBin, path.join(dir, 'capacitor'));
     }
   }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
 
   if (commandExists('cap') || commandExists('capacitor')) {
     console.log('[ensure-cap-bin] cap command linked successfully');
@@ -173,14 +108,6 @@ function main() {
   } else {
     console.log('[ensure-cap-bin] WARNING: cap command still unavailable');
   }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> db2702d9f9c56b5c70fb89358636e243dd040c8f
->>>>>>> 540cf98750fd89bb84d1ca3eb7a8628ec4741b8e
->>>>>>> 3d998c8df498d4e14c17a59be0608478c9d40d96
 }
 
 main();
