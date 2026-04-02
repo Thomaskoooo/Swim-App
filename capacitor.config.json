@@ -3,7 +3,7 @@
   "appName": "Swim Tracker",
   "webDir": "www",
   "server": {
-    "url": "https://yap.asociaciairidologov.sk/swim/index.php",
+    "url": "https://yap.asociaciairidologov.sk/swim/index.php?app_mode=1",
     "cleartext": false,
     "androidScheme": "https"
   }

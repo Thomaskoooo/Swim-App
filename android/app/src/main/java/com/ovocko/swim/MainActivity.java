@@ -53,6 +53,7 @@ public class MainActivity extends BridgeActivity {
 				"(function(){"
 						+ "if(window.__ovockoNativeBridgeInstalled){return;}"
 						+ "window.__ovockoNativeBridgeInstalled=true;"
+						+ "window.SWIM_APP_MODE=true;"
 						+ "window.SWIM_ANDROID_AUTO=" + (carModeActive ? "true" : "false") + ";"
 						+ "function postToNative(title, body){"
 						+ "try{if(window.AndroidAppBridge&&window.AndroidAppBridge.showNativeNotification){"
