@@ -6,9 +6,10 @@ This folder contains a Capacitor Android wrapper for the Swim app.
 
 Edit [capacitor.config.json](capacitor.config.json) and replace:
 
-- https://CHANGE-THIS-DOMAIN/swim/index.php
+- https://yap.asociaciairidologov.sk/swim/index.php?app_mode=1
+- edit 26 still working hehe
 
-with your real hosted URL.
+with your URL
 
 ## 2) Sync project
 
